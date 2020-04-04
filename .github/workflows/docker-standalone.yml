@@ -23,10 +23,10 @@ jobs:
         CMSSW_VERSION: CMSSW_10_2_21
       run: |
         pwd
-	ls -alh
-	cd standalone
-	pwd
-	ls -alh
+        ls -alh
+        cd standalone
+        pwd
+        ls -alh
         export DOCKER_IMAGE="treemaker/cmssw"
 	make CMSSW_VERSION=${{ env.CMSSW_VERSION }} SCRAM_ARCH=${{ env.SCRAM_ARCH }} BASEIMAGE=${{ env.BASE_IMAGE }}
     - name: Explore Docker Images
