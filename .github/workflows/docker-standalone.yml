@@ -16,11 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Docker Registry Login
-      uses: actions-hub/docker@v1.0.0
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build Standalone CMS
       env:
         BASE_IMAGE: clelange/cc7-cms:latest
@@ -29,6 +24,8 @@ jobs:
       run: export DOCKER_IMAGE="treemaker/cmssw" && make CMSSW_VERSION=${{ env.CMSSW_VERSION }} SCRAM_ARCH=${{ env.SCRAM_ARCH }} BASEIMAGE=${{ env.BASE_IMAGE }}
     - name: Explore Docker Images
       run: docker images -a
+    - name: Docker Registry Login
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 #    - name: Docker Tag Standalone CMS
 #      if: success()
 #      uses: actions-hub/docker@v1.0.0
