@@ -16,11 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Docker Registry
-      uses: actions/docker/login@86ab5e854a74b50b7ed798a94d9b8ce175d8ba19
+    - name: Docker Registry Login
+      uses: actions-hub/docker@v1.0.0
       env:
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build Standalone CMS
       env:
         BASE_IMAGE: clelange/cc7-cms:latest
@@ -30,10 +30,12 @@ jobs:
     - name: Explore Docker Images
       run: docker images -a
 #    - name: Docker Tag Standalone CMS
-#      uses: actions/docker/tag@86ab5e854a74b50b7ed798a94d9b8ce175d8ba19
+#      if: success()
+#      uses: actions-hub/docker@v1.0.0
 #      with:
-#        args: standalone treemaker/${{ env.CMSSW_VERSION }}
+#        args: tag standalone treemaker/${{ env.CMSSW_VERSION }}
 #    - name: Docker Push latest Standalone CMS
-#      uses: actions/docker/cli@86ab5e854a74b50b7ed798a94d9b8ce175d8ba19
+#      if: success()
+#      uses: actions-hub/docker@v1.0.0
 #      with:
 #        args: push treemaker/${{ env.CMSSW_VERSION }}:latest
