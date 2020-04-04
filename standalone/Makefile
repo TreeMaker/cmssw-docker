@@ -63,7 +63,9 @@ docker_build:
   --build-arg VCS_URL=`git config --get remote.origin.url` \
   --build-arg VCS_REF=$(GIT_COMMIT) \
 	-t $(DOCKER_IMAGE):$(BASE_VERSION) \
-	--compress --squash .
+	--compress .
+# "--squash" is only supported on a Docker daemon with experimental features enabled
+# GitHub's runners do not have experimental features enabled
 
 docker_push:
 	# Tag image also for CERN GitLab container registry
