@@ -21,14 +21,14 @@ jobs:
       env:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-     - name: Build Standalone CMS
-       env:
-         BASE_IMAGE: clelange/cc7-cms:latest
-         SCRAM_ARCH: slc7_amd64_gcc700
-         CMSSW_VERSION: CMSSW_10_2_21
-       run: export DOCKER_IMAGE="treemaker/cmssw" && make CMSSW_VERSION=${{ env.CMSSW_VERSION }} SCRAM_ARCH=${{ env.SCRAM_ARCH }} BASEIMAGE=${{ env.BASE_IMAGE }}
-     - name: Explore Docker Images
-       run: docker images -a
+    - name: Build Standalone CMS
+      env:
+        BASE_IMAGE: clelange/cc7-cms:latest
+        SCRAM_ARCH: slc7_amd64_gcc700
+        CMSSW_VERSION: CMSSW_10_2_21
+      run: export DOCKER_IMAGE="treemaker/cmssw" && make CMSSW_VERSION=${{ env.CMSSW_VERSION }} SCRAM_ARCH=${{ env.SCRAM_ARCH }} BASEIMAGE=${{ env.BASE_IMAGE }}
+    - name: Explore Docker Images
+      run: docker images -a
 #    - name: Docker Tag Standalone CMS
 #      uses: actions/docker/tag@86ab5e854a74b50b7ed798a94d9b8ce175d8ba19
 #      with:
