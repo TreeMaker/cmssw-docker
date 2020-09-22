@@ -1,3 +1,6 @@
+# WARNING!!!
+## This repository has been archived. It is no longer used or maintained and has been replaced by [https://gitlab.cern.ch/TreeMaker/cmssw-docker/](https://gitlab.cern.ch/TreeMaker/cmssw-docker/).
+
 # cmssw-docker
 
 Dockerfiles for CMSSW
